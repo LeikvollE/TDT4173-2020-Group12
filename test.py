@@ -10,6 +10,7 @@ import numpy as np
 def main():
     stars = load_stars()
     c, a = kmeans(stars, 6)
+    print(a)
     print(euclidean_loss(stars, c, a))
 
     m = mnist.mnist()
@@ -18,9 +19,6 @@ def main():
     for i in range(10):
         plt.imshow(np.reshape(c[i], (28, 28)))
         plt.show()
-
-
-
 
 
 if __name__ == '__main__':
