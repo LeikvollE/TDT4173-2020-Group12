@@ -1,4 +1,10 @@
 import numpy as np
 
-def eucledean(data, centroids):
-    return 0;
+
+def euclidean(data, centroids, assignments):
+    loss = 0
+    for i, entry in enumerate(data):
+        diff = np.subtract(entry, centroids[assignments[i]])
+        loss += diff.dot(diff)
+    return loss
+
