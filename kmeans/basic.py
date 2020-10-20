@@ -4,7 +4,7 @@ from distance.distance_functions import euclidean_dist
 
 def kmeans(data, k):
     centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
-    assignments = -np.ones(k)
+    assignments = -np.ones(len(data[0]))
     changed = True
     while changed:
         changed = False
