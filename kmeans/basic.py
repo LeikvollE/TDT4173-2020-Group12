@@ -21,8 +21,8 @@ def kmeans(data, k):
             if dist_j != assignments[i]:
                 changed = True
                 assignments[i] = dist_j
-            centroid_divisor[assignments[i]] += 1 # TODO: div by zero error (tom cluster)
-            new_centroids[assignments[i]] += entry
+            centroid_divisor[int(assignments[i])] += 1 # TODO: div by zero error (tom cluster)
+            new_centroids[int(assignments[i])] += entry
         if not changed:
             return centroids, assignments
         else:
