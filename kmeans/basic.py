@@ -9,7 +9,7 @@ def kmeans(data, k):
     while changed:
         changed = False
         new_centroids = np.zeros_like(centroids)
-        centroid_divisor = np.zeros_like(len(centroids))
+        centroid_divisor = np.zeros_like(centroids)
         for i, entry in enumerate(data):
             dist = float("inf")
             dist_j = -1
@@ -26,5 +26,7 @@ def kmeans(data, k):
         if not changed:
             return centroids, assignments
         else:
-            centroids = np.divide(new_centroids, centroid_divisor)
-
+            centroids = np.divide(new_centroids,
+                                  centroid_divisor,
+                                  out=np.zeros_like(new_centroids),
+                                  where=centroid_divisor!=0)
