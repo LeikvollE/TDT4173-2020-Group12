@@ -8,8 +8,9 @@ def load_stars():
     return (stars - np.min(stars, axis=0)) / (np.max(stars) - np.min(stars))
 
 
-stars = load_stars()
+if __name__ == '__main__':
+    stars = load_stars()
 
-centroids, assignments = kmeans(stars, 6)
-print(assignments)
-print(euclidean_loss(stars, centroids, assignments))
+    centroids, assignments = kmeans(stars, 6)
+    print(assignments)
+    print(euclidean_loss(stars, centroids, assignments))
