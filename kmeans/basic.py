@@ -4,7 +4,7 @@ from distance.distance_functions import euclidean_dist
 
 
 def kmeans(data, k):
-    #centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
+    # centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
     centroids = data[random.sample(range(len(data)), k)].copy()
     assignments = -np.ones(len(data))
     changed = True
@@ -26,7 +26,8 @@ def kmeans(data, k):
             if dist_j != assignments[i]:
                 changed = True
                 assignments[i] = dist_j
-            centroid_divisor[int(assignments[i])] += 1 # TODO: div by zero error (tom cluster)
+            # TODO: div by zero error (tom cluster)
+            centroid_divisor[int(assignments[i])] += 1
             new_centroids[int(assignments[i])] += entry
         if not changed:
             return centroids, assignments
