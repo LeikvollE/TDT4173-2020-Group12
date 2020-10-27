@@ -1,6 +1,7 @@
 import numpy as np
 from kmeans.basic import kmeans
 from loss.euclidean_loss import euclidean_loss
+import matplotlib.pyplot as plt
 
 
 def load_stars():
@@ -12,6 +13,10 @@ def load_stars():
 if __name__ == '__main__':
     stars = load_stars()
 
-    centroids, assignments = kmeans(stars, 6)
-    print(assignments)
+    centroids, assignments, loss = kmeans(stars, 6)
+    plt.plot(loss)
+    plt.xlabel("Iterations")
+    plt.ylabel("Loss")
+    plt.show()
+    print(loss)
     print(euclidean_loss(stars, centroids, assignments))

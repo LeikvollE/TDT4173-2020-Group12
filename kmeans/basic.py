@@ -1,11 +1,14 @@
 import numpy as np
 import random
 from distance.distance_functions import euclidean_dist
+from loss.euclidean_loss import euclidean_loss
 
 
 def kmeans(data, k):
+    #centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
     centroids = data[random.sample(range(len(data)), k)].copy()
     assignments = -np.ones(len(data))
+    loss = []
     changed = True
     counter = 0
     while changed:
@@ -28,10 +31,11 @@ def kmeans(data, k):
             centroid_divisor[int(assignments[i])] += 1
             new_centroids[int(assignments[i])] += entry
         if not changed:
-            return centroids, assignments
+            return centroids, assignments, loss
         else:
             for k, div in enumerate(centroid_divisor):
                 if div == 0:
                     centroid_divisor[k] = 1
                     new_centroids[k] = centroids[k]
             centroids = np.divide(new_centroids, centroid_divisor)
+            loss.append(euclidean_loss(data, centroids, assignments))
