@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pandas
+from accuracy import accuracy
 
 
 class mnist():
@@ -12,3 +13,11 @@ class mnist():
 
     def get_test_set(self):
         return self.test_set.iloc[:, 1:].to_numpy()
+
+    def get_accuracy(self, assignments, something='test'):
+        if something == 'test':
+            labels = self.test_set[['label']].to_numpy().flatten()
+        else:
+            labels = self.test_set[['label']].to_numpy().flatten()
+
+        return accuracy(labels, assignments)

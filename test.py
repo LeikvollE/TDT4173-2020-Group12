@@ -15,25 +15,30 @@ def cli():
 
 
 @click.command()
-def test_mnist():
+@click.argument('p', default=False)
+def test_mnist(p):
     m = mnist.mnist()
-    c, a = kmeans(m.get_test_set(), 10)
+    c, a, loss = kmeans(m.get_test_set(), 10)
     print(euclidean_loss(m.get_test_set(), c, a))
-    for i in range(10):
-        plt.imshow(np.reshape(c[i], (28, 28)))
-        plt.show()
+    print(m.get_accuracy(a, 'test'))
+    if p:
+        for i in range(10):
+            plt.imshow(np.reshape(c[i], (28, 28)))
+            plt.show()
 
-    c, a = kmeans(m.get_trainig_set(), 10)
+    c, a, loss = kmeans(m.get_trainig_set(), 10)
     print(euclidean_loss(m.get_trainig_set(), c, a))
-    for i in range(10):
-        plt.imshow(np.reshape(c[i], (28, 28)))
-        plt.show()
+    print(m.get_accuracy(a, 'train'))
+    if p:
+        for i in range(10):
+            plt.imshow(np.reshape(c[i], (28, 28)))
+            plt.show()
 
 
 @click.command()
 def test_stars():
     stars = load_stars()
-    c, a = kmeans(stars, 6)
+    c, a, loss = kmeans(stars, 6)
     print(a)
     print(euclidean_loss(stars, c, a))
 
@@ -41,13 +46,13 @@ def test_stars():
 @click.command()
 def test_weka():
     w = weka.weka()
-    c, a = kmeans(w.get_two(), 2)
-    print(a)
+    c, a, loss = kmeans(w.get_two(), 2)
     print(euclidean_loss(w.get_two(), c, a))
+    print(w.get_accuracy(a, 2))
 
-    c, a = kmeans(w.get_three(), 3)
-    print(a)
+    c, a, loss = kmeans(w.get_three(), 3)
     print(euclidean_loss(w.get_three(), c, a))
+    print(w.get_accuracy(a, 3))
 
 
 cli.add_command(test_mnist)
