@@ -18,6 +18,6 @@ class mnist():
         if something == 'test':
             labels = self.test_set[['label']].to_numpy().flatten()
         else:
-            labels = self.test_set[['label']].to_numpy().flatten()
+            labels = self.training_set[['label']].to_numpy().flatten()
 
         return accuracy(labels, assignments)
