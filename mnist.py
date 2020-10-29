@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 import pandas
-<<<<<<< HEAD
 import numpy as np
-=======
 from accuracy import accuracy
->>>>>>> bf283af7697d4214f978787578b2d5b5ecb17b33
 
 
 class mnist():
