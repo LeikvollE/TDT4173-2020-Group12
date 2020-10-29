@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from kmeans.basic import kmeans
+from kmeans.kmeanspp import kmeanspp
 import mnist
 import weka
 from stars import load_stars
@@ -17,14 +18,18 @@ def cli():
 @click.command()
 def test_mnist():
     m = mnist.mnist()
-    c, a = kmeans(m.get_test_set(), 10)
-    print(euclidean_loss(m.get_test_set(), c, a))
+    c, a, l = kmeanspp(m.get_test_set(), 10)
+    print(l[-1])
+    plt.plot(l)
+    plt.show()
     for i in range(10):
         plt.imshow(np.reshape(c[i], (28, 28)))
         plt.show()
 
-    c, a = kmeans(m.get_trainig_set(), 10)
-    print(euclidean_loss(m.get_trainig_set(), c, a))
+    c, a, l = kmeans(m.get_test_set(), 10)
+    print(l[-1])
+    plt.plot(l)
+    plt.show()
     for i in range(10):
         plt.imshow(np.reshape(c[i], (28, 28)))
         plt.show()

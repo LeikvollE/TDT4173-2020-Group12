@@ -4,9 +4,20 @@ from distance.distance_functions import euclidean_dist
 from loss.euclidean_loss import euclidean_loss
 
 
-def kmeans(data, k):
+def kmeanspp(data, k):
     #centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
-    centroids = data[random.sample(range(len(data)), k)].copy()
+    #centroids = data[random.sample(range(len(data)), k)].copy()
+    centroids = []
+    indeces = range(len(data))
+    centroids.append(data[np.random.choice(indeces, 1)[0]].copy())
+    while len(centroids) < k:
+        distances = np.full(len(data), np.inf)
+        for i, point in enumerate(data):
+            for j, centroid in enumerate(centroids):
+                distances[i] = min(distances[i], euclidean_dist(point, centroid))
+        dss = sum(np.power(distances, 2))
+        p = np.divide(np.power(distances, 2), dss)
+        centroids.append(data[np.random.choice(indeces, 1, p=p)[0]].copy())
     assignments = -np.ones(len(data))
     loss = []
     changed = True
