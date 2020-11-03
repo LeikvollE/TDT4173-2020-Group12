@@ -19,7 +19,7 @@ def cli():
 @click.argument('p', default=False)
 def test_mnist(p):
     m = mnist.mnist()
-    c, a, loss = kmeanspp(m.get_test_set(), 10)
+    c, a, loss = kmeanspp(m.get_test_set(), 10, 1)
     print(euclidean_loss(m.get_test_set(), c, a))
     print(m.get_accuracy(a, 'test'))
     if p:

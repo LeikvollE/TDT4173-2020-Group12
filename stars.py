@@ -13,7 +13,7 @@ def load_stars():
 if __name__ == '__main__':
     stars = load_stars()
 
-    centroids, assignments, loss = kmeans(stars, 6)
+    centroids, assignments, loss = kmeans(stars, 6, 1)
     plt.plot(loss)
     plt.xlabel("Iterations")
     plt.ylabel("Loss")
