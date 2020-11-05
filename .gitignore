@@ -98,3 +98,4 @@ __pycache__/
 **/__pycache__/
 .envrc
 shell.nix
+.ipynb_checkpoints/
