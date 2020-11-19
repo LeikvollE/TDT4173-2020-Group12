@@ -15,7 +15,7 @@ centroids = np.random.normal(0.0, 1.0, [k, len(data[0])]) # random vector
 # centroids = data[random.sample(range(len(data)), k)].copy() # forgy
 ```
 
-The kmeanspp.py includes kmeans++ with its variation on cluster initialisation. For both of these functions, the distance function can be changed in one line, either use
+The kmeanspp.py includes kmeans++ with its variation on cluster initialisation. For both of kmeans and kmeans++, the distance function can be changed in one line: either use
 
 ```
 dist_j = -1
