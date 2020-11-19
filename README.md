@@ -1,3 +1,32 @@
 # TDT4173-2020-Group12
 
-Project repo
+This repository contains code and data used in our analysis of k-means' performance when augmented with popular modifications:
+
+# Files and folders:
+
+The data folder contains the star dataset in stars.csv. MNIST is not included due to its size, but can be downloaded in .csv format and placed in the data folder from this link: https://www.kaggle.com/oddrationale/mnist-in-csv
+
+In the distance folderr the file distance_functions.py includes both a manhattand and Euclidean distance function
+
+The kmeans folder includes two implementationsof kmeans, the basic.py file can be used with the random vector and Forgy (aka random vector) initialisation methods by way of the following lines in the kmeans function:
+
+```
+centroids = np.random.normal(0.0, 1.0, [k, len(data[0])]) # random vector
+# centroids = data[random.sample(range(len(data)), k)].copy() # forgy
+```
+
+The kmeanspp.py includes kmeans++ with its variation on cluster initialisation. For both of these functions, the distance function can be changed in one line, either use
+
+```
+dist_j = -1
+   for j, centroid in enumerate(centroids):
+       new_dist = euclidean_dist(entry, centroid)
+```
+or
+```
+dist_j = -1
+   for j, centroid in enumerate(centroids):
+       new_dist = manhattan_dist(entry, centroid)
+```
+
+The jupyter notebook PCA.ipynb demonstrates use of kmeans++ and the get_accuracy python function to find the accuracy on MNIST. By switching the commenting in section \[4\] of the notebook, PCA can be used, courtesy of scikit-learn.
