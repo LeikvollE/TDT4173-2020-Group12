@@ -29,4 +29,4 @@ dist_j = -1
        new_dist = manhattan_dist(entry, centroid)
 ```
 
-The jupyter notebook PCA.ipynb demonstrates use of kmeans++ and the get_accuracy python function to find the accuracy on MNIST. By switching the commenting in section \[4\] of the notebook, PCA can be used, courtesy of scikit-learn.
+The jupyter notebook PCA.ipynb demonstrates use of kmeans++ and the get_accuracy from accuracy.py to find the accuracy on MNIST. By switching the commenting in section \[4\] of the notebook, PCA can be used, courtesy of scikit-learn.
