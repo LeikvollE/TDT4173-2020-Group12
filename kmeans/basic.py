@@ -1,17 +1,20 @@
 import numpy as np
 import random
 from distance.distance_functions import euclidean_dist
-from loss.euclidean_loss import euclidean_loss
+from loss.euclidean_loss import __loss
 
 
-def kmeans(data, k, runs):
+def kmeans(data, k, runs, init='basic', d_func=euclidean_dist):
     centroids_list = []
     assignments_list = []
     losses = []
     for run in range(runs):
-        print("run:", run)
-        centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
-        # centroids = data[random.sample(range(len(data)), k)].copy()
+        if not runs == 1:
+            print("run:", run)
+        if init == 'basic':
+            centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
+        else:
+            centroids = data[random.sample(range(len(data)), k)].copy()
         assignments = -np.ones(len(data))
         changed = True
         loss = []
@@ -23,7 +26,7 @@ def kmeans(data, k, runs):
                 dist = float("inf")
                 dist_j = -1
                 for j, centroid in enumerate(centroids):
-                    new_dist = euclidean_dist(entry, centroid)
+                    new_dist = d_func(entry, centroid)
                     if new_dist < dist:
                         dist = new_dist
                         dist_j = j
@@ -43,7 +46,7 @@ def kmeans(data, k, runs):
                         centroid_divisor[k] = 1
                         new_centroids[k] = centroids[k]
                 centroids = np.divide(new_centroids, centroid_divisor)
-                loss.append(euclidean_loss(data, centroids, assignments))
+                loss.append(__loss(data, centroids, assignments, d_func))
     best_i = 0
     for i, loss in enumerate(losses):
         if losses[i][-1] < losses[best_i][-1]:

@@ -1,15 +1,15 @@
 import numpy as np
-import random
 from distance.distance_functions import euclidean_dist
-from loss.euclidean_loss import euclidean_loss
+from loss.euclidean_loss import __loss
 
 
-def kmeanspp(data, k, runs):
+def kmeanspp(data, k, runs, d_func=euclidean_dist):
     centroids_list = []
     assignments_list = []
     losses = []
     for run in range(runs):
-        print("run:", run)
+        if not runs == 1:
+            print("run:", run)
         centroids = []
         indeces = range(len(data))
         centroids.append(data[np.random.choice(indeces, 1)[0]].copy())
@@ -17,7 +17,7 @@ def kmeanspp(data, k, runs):
             distances = np.full(len(data), np.inf)
             for i, point in enumerate(data):
                 for j, centroid in enumerate(centroids):
-                    distances[i] = min(distances[i], euclidean_dist(point, centroid))
+                    distances[i] = min(distances[i], d_func(point, centroid))
             dss = sum(np.power(distances, 2))
             p = np.divide(np.power(distances, 2), dss)
             centroids.append(data[np.random.choice(indeces, 1, p=p)[0]].copy())
@@ -32,7 +32,7 @@ def kmeanspp(data, k, runs):
                 dist = float("inf")
                 dist_j = -1
                 for j, centroid in enumerate(centroids):
-                    new_dist = euclidean_dist(entry, centroid)
+                    new_dist = d_func(entry, centroid)
                     if new_dist < dist:
                         dist = new_dist
                         dist_j = j
@@ -52,7 +52,7 @@ def kmeanspp(data, k, runs):
                         centroid_divisor[k] = 1
                         new_centroids[k] = centroids[k]
                 centroids = np.divide(new_centroids, centroid_divisor)
-                loss.append(euclidean_loss(data, centroids, assignments))
+                loss.append(__loss(data, centroids, assignments, d_func))
     best_i = 0
     for i, loss in enumerate(losses):
         if losses[i][-1] < losses[best_i][-1]:
