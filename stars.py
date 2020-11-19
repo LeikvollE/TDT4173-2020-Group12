@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def load_stars():
     stars = np.genfromtxt('data/stars.csv', delimiter=',', skip_header=1)
     stars = stars[:, :-3]
-    return (stars - np.min(stars, axis=0)) / (np.max(stars) - np.min(stars))
+    return (stars - np.min(stars, axis=0)) / (np.max(stars, axis=0) - np.min(stars, axis=0))
 
 
 if __name__ == '__main__':
