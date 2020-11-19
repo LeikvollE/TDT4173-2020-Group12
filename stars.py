@@ -2,12 +2,13 @@ import numpy as np
 from kmeans.basic import kmeans
 from loss.euclidean_loss import euclidean_loss
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import minmax_scale
 
 
 def load_stars():
     stars = np.genfromtxt('data/stars.csv', delimiter=',', skip_header=1)
     stars = stars[:, :-3]
-    return (stars - np.min(stars, axis=0)) / (np.max(stars) - np.min(stars))
+    return minmax_scale(stars)
 
 
 if __name__ == '__main__':
