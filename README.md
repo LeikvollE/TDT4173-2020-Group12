@@ -8,7 +8,7 @@ The data folder contains the star dataset in stars.csv. MNIST is not included du
 
 In the distance folderr the file distance_functions.py includes both a manhattand and Euclidean distance function
 
-The kmeans folder includes two implementationsof kmeans, the basic.py file can be used with the random vector and Forgy (aka random vector) initialisation methods by way of the following lines in the kmeans function:
+The kmeans folder includes two implementationsof kmeans, the basic.py file can be used with the random vector and Forgy (aka random sample) initialisation methods by way of the following lines in the kmeans function:
 
 ```
 centroids = np.random.normal(0.0, 1.0, [k, len(data[0])]) # random vector
