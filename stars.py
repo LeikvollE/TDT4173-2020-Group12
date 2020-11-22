@@ -9,6 +9,10 @@ def load_stars():
     stars = stars[:, :-3]
     return (stars - np.min(stars, axis=0)) / (np.max(stars, axis=0) - np.min(stars, axis=0))
 
+def get_accuracy(assignments):
+    labels = pandas.read_csv('data/stars.csv')[['Star type']].to_numpy().flatten()
+    return accuracy(labels, assignments)
+
 
 if __name__ == '__main__':
     stars = load_stars()
