@@ -1,5 +1,5 @@
 from distance.distance_functions import euclidean_dist
-
+import numpy as np
 
 def euclidean_loss(data, centroids, assignments):
     loss = 0
