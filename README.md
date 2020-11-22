@@ -2,6 +2,9 @@
 
 This repository contains code and data used in our analysis of k-means' performance when augmented with popular modifications:
 
+# Try it yourself!
+The jupyter notebook PCA.ipynb demonstrates use of the code we made for our project. Please read through this README before trying yourslf.
+
 # Files and folders:
 
 The data folder contains the star dataset in stars.csv. MNIST is not included due to its size, but can be downloaded in .csv format and placed in the data folder from this link: https://www.kaggle.com/oddrationale/mnist-in-csv
