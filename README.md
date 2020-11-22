@@ -35,3 +35,5 @@ dist_j = -1
 The jupyter notebook Demo.ipynb demonstrates use of our code. By switching the commenting in section \[6\] of the notebook, PCA can be used on MNIST, courtesy of scikit-learn.
 
 The files mnist.py and stars.py load and prepare thedatses. The main function in stars.py computes the heuristics which were highlighted in our podcast.
+
+The best of n runs enhancement is set in the last parameter of the kmeans and kmeanspp functions (in the notebook n is currently set to 1).
