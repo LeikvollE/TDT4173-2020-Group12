@@ -26,16 +26,12 @@ def accuracy(labels, assignments):
     out = (None, 0)
     for p in pairs:
         i = 0
-        miss = False
 
         for l, c in p:
             if c in count[l]:
                 i += count[l][c]
-            else:
-                miss = True
-                break
 
-        if not miss and out[1] <= i:
+        if out[1] <= i:
             out = (p, i)
 
     return out[0], out[1] / len(assignments)
