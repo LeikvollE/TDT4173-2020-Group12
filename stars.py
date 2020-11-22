@@ -12,11 +12,22 @@ def load_stars():
 
 if __name__ == '__main__':
     stars = load_stars()
+    labels = pandas.read_csv('data/stars.csv')[['Star type']].to_numpy().flatten()
+    sil = metrics.silhouette_score(stars, labels, metric='euclidean')
+    cal = metrics.calinski_harabasz_score(stars, labels)
+    dav = metrics.davies_bouldin_score(stars, labels)
 
-    centroids, assignments, loss = kmeans(stars, 6, 1)
-    plt.plot(loss)
-    plt.xlabel("Iterations")
-    plt.ylabel("Loss")
-    plt.show()
-    print(loss)
-    print(euclidean_loss(stars, centroids, assignments))
+    print(sil)
+    print(cal)
+    print(dav)
+    sil = 0
+    cal = 0
+    dav = 0
+    for i in range(1000):
+        centroids, labels, loss = kmeans(stars, 6, 1)
+        sil += metrics.silhouette_score(stars, labels, metric='euclidean')
+        cal += metrics.calinski_harabasz_score(stars, labels)
+        dav += metrics.davies_bouldin_score(stars, labels)
+    print(sil/1000)
+    print(cal/1000)
+    print(dav/1000)
