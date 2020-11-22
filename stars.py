@@ -2,7 +2,9 @@ import numpy as np
 from kmeans.basic import kmeans
 from loss.euclidean_loss import euclidean_loss
 import matplotlib.pyplot as plt
-
+from accuracy import accuracy
+import pandas
+from sklearn import metrics
 
 def load_stars():
     stars = np.genfromtxt('data/stars.csv', delimiter=',', skip_header=1)
