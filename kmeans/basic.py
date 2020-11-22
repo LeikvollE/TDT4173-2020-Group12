@@ -9,8 +9,8 @@ def kmeans(data, k, runs):
     assignments_list = []
     losses = []
     for run in range(runs):
-        centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
-        # centroids = data[random.sample(range(len(data)), k)].copy()
+        # centroids = np.random.normal(0.0, 1.0, [k, len(data[0])])
+        centroids = data[random.sample(range(len(data)), k)].copy()
         assignments = -np.ones(len(data))
         changed = True
         loss = []
