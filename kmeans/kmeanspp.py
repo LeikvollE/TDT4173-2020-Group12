@@ -9,7 +9,6 @@ def kmeanspp(data, k, runs):
     assignments_list = []
     losses = []
     for run in range(runs):
-        print("run:", run)
         centroids = []
         indeces = range(len(data))
         centroids.append(data[np.random.choice(indeces, 1)[0]].copy())
