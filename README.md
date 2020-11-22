@@ -3,15 +3,15 @@
 This repository contains code and data used in our analysis of k-means' performance when augmented with popular modifications:
 
 # Try it yourself!
-The jupyter notebook PCA.ipynb demonstrates use of the code we made for our project. Please read through this README before trying yourslf.
+The jupyter notebook PCA.ipynb demonstrates use of the code we made for our project. Please read through this README before trying yourself.
 
 # Files and folders:
 
 The data folder contains the star dataset in stars.csv. MNIST is not included due to its size, but can be downloaded in .csv format and placed in the data folder from this link: https://www.kaggle.com/oddrationale/mnist-in-csv
 
-In the distance folderr the file distance_functions.py includes both a manhattand and Euclidean distance function
+In the distance folder the file distance_functions.py includes both a manhattan and Euclidean distance function
 
-The kmeans folder includes two implementationsof kmeans, the basic.py file can be used with the random vector and Forgy (aka random sample) initialisation methods by way of the following lines in the kmeans function:
+The kmeans folder includes two implementations of kmeans. In basic.py, the random vector and Forgy (aka random sample) initialisation methods can be used by way of the following lines in the kmeans() function:
 
 ```
 centroids = np.random.normal(0.0, 1.0, [k, len(data[0])]) # random vector
@@ -33,3 +33,5 @@ dist_j = -1
 ```
 
 The jupyter notebook PCA.ipynb demonstrates use of kmeans and the get_accuracy from accuracy.py to find the accuracy on MNIST. By switching the commenting in section \[4\] of the notebook, PCA can be used, courtesy of scikit-learn.
+
+The files mnist.py and stars.py load and prepare thedatses. The main function in stars.py computes the heuristics which were highlighted in our podcast.
