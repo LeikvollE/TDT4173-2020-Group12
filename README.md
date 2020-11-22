@@ -3,7 +3,7 @@
 This repository contains code and data used in our analysis of k-means' performance when augmented with popular modifications:
 
 # Try it yourself!
-The jupyter notebook PCA.ipynb demonstrates use of the code we made for our project. Please read through this README before trying yourself.
+The jupyter notebook Demo.ipynb demonstrates use of the code we made for our project. Please read through this README before trying yourself.
 
 # Files and folders:
 
@@ -32,6 +32,6 @@ dist_j = -1
        new_dist = manhattan_dist(entry, centroid)
 ```
 
-The jupyter notebook PCA.ipynb demonstrates use of kmeans and the get_accuracy from accuracy.py to find the accuracy on MNIST. By switching the commenting in section \[4\] of the notebook, PCA can be used, courtesy of scikit-learn.
+The jupyter notebook Demo.ipynb demonstrates use of our code. By switching the commenting in section \[6\] of the notebook, PCA can be used on MNIST, courtesy of scikit-learn.
 
 The files mnist.py and stars.py load and prepare thedatses. The main function in stars.py computes the heuristics which were highlighted in our podcast.
