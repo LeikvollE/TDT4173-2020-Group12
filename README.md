@@ -3,7 +3,7 @@
 This repository contains code and data used in our analysis of k-means' performance when augmented with popular modifications:
 
 # Try it yourself!
-The jupyter notebook Demo.ipynb demonstrates use of the code we made for our project. Please read through this README before trying yourself.
+The jupyter notebook Demo.ipynb demonstrates use of the code we made for our project. Please read through this README before trying yourself. The notebook includes parts of many of the tabkes and figures referenced in the report.
 
 # Files and folders:
 
