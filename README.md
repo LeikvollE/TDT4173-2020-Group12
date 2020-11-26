@@ -5,6 +5,9 @@ This repository contains code and data used in our analysis of k-means' performa
 # Try it yourself!
 The jupyter notebook Demo.ipynb demonstrates use of the code we made for our project. Please read through this README before trying yourself. The notebook includes parts of many of the tabkes and figures referenced in the report.
 
+# Prerequisites
+We recommend using Anaconda navigator to launch the jupyter notebook. The code uses packages numpy, pandas, scikit and matplotlib
+
 # Files and folders:
 
 The data folder contains the star dataset in stars.csv. MNIST is not included due to its size, but can be downloaded in .csv format and placed in the data folder from this link: https://www.kaggle.com/oddrationale/mnist-in-csv
