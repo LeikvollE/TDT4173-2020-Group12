@@ -11,6 +11,7 @@ def kmeanspp(data, k, runs):
     for run in range(runs):
         centroids = []
         indeces = range(len(data))
+		# Init with single random sample from data
         centroids.append(data[np.random.choice(indeces, 1)[0]].copy())
         while len(centroids) < k:
             distances = np.full(len(data), np.inf)
@@ -19,8 +20,12 @@ def kmeanspp(data, k, runs):
                     distances[i] = min(distances[i], euclidean_dist(point, centroid))
             dss = sum(np.power(distances, 2))
             p = np.divide(np.power(distances, 2), dss)
+			# Choose new centroid from remaining data points with probability based on distance to current selection of centroids
             centroids.append(data[np.random.choice(indeces, 1, p=p)[0]].copy())
         assignments = -np.ones(len(data))
+		#
+		# Rest of function is the same as basic.py
+		#
         loss = []
         changed = True
         while changed:

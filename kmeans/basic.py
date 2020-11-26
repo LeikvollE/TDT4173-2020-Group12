@@ -18,9 +18,11 @@ def kmeans(data, k, runs):
             changed = False
             new_centroids = np.zeros_like(centroids)
             centroid_divisor = np.zeros((len(centroids), 1))
+			# Assignment step
             for i, entry in enumerate(data):
                 dist = float("inf")
                 dist_j = -1
+				#Find centroid with smallets distance to data point
                 for j, centroid in enumerate(centroids):
                     new_dist = euclidean_dist(entry, centroid)
                     if new_dist < dist:
@@ -29,21 +31,25 @@ def kmeans(data, k, runs):
                 if dist_j != assignments[i]:
                     changed = True
                     assignments[i] = dist_j
+				# Update centroids with new assignment for data point
                 centroid_divisor[int(assignments[i])] += 1
                 new_centroids[int(assignments[i])] += entry
             if not changed:
+				# If converged add centroids, assignments and loss to list. List is later compared to find the centroids with the lowest loss.
                 centroids_list.append(centroids)
                 assignments_list.append(assignments)
                 losses.append(loss)
                 break
             else:
+				# Update centroids by averageing the data points in an assignment.
                 for k, div in enumerate(centroid_divisor):
                     if div == 0:
                         centroid_divisor[k] = 1
                         new_centroids[k] = centroids[k]
                 centroids = np.divide(new_centroids, centroid_divisor)
                 loss.append(euclidean_loss(data, centroids, assignments))
-    best_i = 0
+    # Find centroid assignment with lowest loss
+	best_i = 0
     for i, loss in enumerate(losses):
         if losses[i][-1] < losses[best_i][-1]:
             best_i = i
